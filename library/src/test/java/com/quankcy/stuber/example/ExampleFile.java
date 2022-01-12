@@ -2,7 +2,10 @@ package com.quankcy.stuber.example;
 
 import com.quankcy.stuber.GeneratorPair;
 import com.quankcy.stuber.generator.Generator;
+import com.quankcy.stuber.generator.GeneratorFactory;
 import com.quankcy.stuber.generator.RandomGenerator;
+
+import static com.quankcy.stuber.generator.GeneratorFactory.getGeneratorInstance;
 
 public class ExampleFile {
 
@@ -17,15 +20,15 @@ public class ExampleFile {
         return new ExampleFileSeeder();
     }
 
-    public static ExampleFile seed(){
+    public static ExampleFile seed() {
         return new ExampleFileSeeder().seed();
     }
 
-    public static class ExampleFileSeeder {
+    public static class ExampleFileSeeder<T extends Generator> {
         /* all fields must be private , it is GeneratorPair with defined on field generator*/
 //        private GeneratorPair someString = new GeneratorPair(RandomGenerator.class);
 //        def constructor = clazz.getConstructor().newInstance()
-        private GeneratorPair someString = new GeneratorPair(new RandomGenerator());
+        private GeneratorPair someString = new GeneratorPair(RandomGenerator.class);
 
         /* package private constructor */
         ExampleFileSeeder() {
@@ -36,7 +39,7 @@ public class ExampleFile {
             - generator argument
             - same argument as already exists
          */
-        public ExampleFileSeeder someString(Generator someStringGenerator) {
+        public ExampleFileSeeder someString(Class<T> someStringGenerator) {
             this.someString.setGenerator(someStringGenerator);
             return this;
         }

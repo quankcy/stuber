@@ -4,18 +4,20 @@ import com.quankcy.stuber.generator.Generator;
 
 import java.util.Optional;
 
+import static com.quankcy.stuber.generator.GeneratorFactory.getGeneratorInstance;
+
 public class GeneratorPair {
 
     private Generator generator;
     private Optional<String> value;
 
-    public GeneratorPair(Generator generator) {
-        this.generator = generator;
+    public <T extends Generator> GeneratorPair(Class<T> generatorClass) {
+        this.setGenerator(generatorClass);
         this.value = Optional.empty();
     }
 
-    public void setGenerator(Generator generator) {
-        this.generator = generator;
+    public <T extends Generator> void setGenerator(Class<T> generatorClass) {
+        this.generator = getGeneratorInstance(generatorClass);
     }
 
     public void setValue(String value) {

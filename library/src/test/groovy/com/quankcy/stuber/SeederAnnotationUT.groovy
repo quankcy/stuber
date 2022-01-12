@@ -38,11 +38,14 @@ class SeederAnnotationUT extends Specification{
             def seeder = ExampleFile.seeder()
 
             def seed1 = ExampleFile.seeder().someString("new value").seed()
+            def seed2 = ExampleFile.seeder().someString(RandomGenerator.class).seed()
 
-            def seed2a = seeder.seed()
-            def seed2b = seeder.seed()
+            def seed3a = seeder.seed()
+            def seed3b = seeder.seed()
 
-            def seed3 = ExampleFile.seed()
+            seed3a != seed3b
+
+            def seed4 = ExampleFile.seed()
 
             true
     }
