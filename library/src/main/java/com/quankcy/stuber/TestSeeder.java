@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface SeedBuilder {
+public @interface TestSeeder {
 
     //    String field();
     Class<? extends Generator> value();

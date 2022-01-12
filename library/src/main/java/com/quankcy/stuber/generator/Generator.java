@@ -1,6 +1,6 @@
 package com.quankcy.stuber.generator;
 
-public interface Generator{
+public interface Generator {
 
     String generate();
 

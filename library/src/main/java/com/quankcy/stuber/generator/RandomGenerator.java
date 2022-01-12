@@ -2,7 +2,7 @@ package com.quankcy.stuber.generator;
 
 import java.util.Random;
 
-public class RandomGenerator implements Generator{
+public class RandomGenerator implements Generator {
 
     @Override
     public String generate() {

@@ -4,16 +4,13 @@ import com.quankcy.stuber.GeneratorPair;
 import com.quankcy.stuber.generator.Generator;
 import com.quankcy.stuber.generator.RandomGenerator;
 
-// Stubbed
 public class ExampleFile {
 
+    // what access modifier?
     String someString;
-//    Integer someInteger;
 
     ExampleFile(String someString) {
-//    SeededWithRulesFile(String someString, Integer someInteger) {
         this.someString = someString;
-//        this.someInteger = someInteger;
     }
 
     public static ExampleFileSeeder seeder() {
@@ -25,14 +22,20 @@ public class ExampleFile {
     }
 
     public static class ExampleFileSeeder {
-        //        private SeededWithRulesFile seededWithRulesFile;
+        /* all fields must be private , it is GeneratorPair with defined on field generator*/
+//        private GeneratorPair someString = new GeneratorPair(RandomGenerator.class);
+//        def constructor = clazz.getConstructor().newInstance()
         private GeneratorPair someString = new GeneratorPair(new RandomGenerator());
-//        private GeneratorPair<Integer> someInteger;
 
+        /* package private constructor */
         ExampleFileSeeder() {
 //            this.seededWithRulesFile = new SeededWithRulesFile();
         }
 
+        /* double public setter:
+            - generator argument
+            - same argument as already exists
+         */
         public ExampleFileSeeder someString(Generator someStringGenerator) {
             this.someString.setGenerator(someStringGenerator);
             return this;
@@ -43,19 +46,16 @@ public class ExampleFile {
             return this;
         }
 
-//        public SeededWithRulesFileSeeder someInteger(Integer someInteger) {
-//            this.someInteger = someInteger;
-//            return this;
-//        }
-
+        /* seed method */
         public ExampleFile seed() {
             return new ExampleFile(someString.get());
         }
 
+        /*
         public String toString() {
             return "SeederClassTest.SeederClassTestBuilder(someString=" + this.someString + ")";
         }
-
+        */
     }
 
 }
