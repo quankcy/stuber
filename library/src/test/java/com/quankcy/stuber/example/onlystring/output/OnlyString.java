@@ -1,37 +1,35 @@
-package com.quankcy.stuber.example;
+package com.quankcy.stuber.example.onlystring.output;
 
 import com.quankcy.stuber.GeneratorPair;
 import com.quankcy.stuber.generator.Generator;
-import com.quankcy.stuber.generator.GeneratorFactory;
 import com.quankcy.stuber.generator.RandomGenerator;
 
-import static com.quankcy.stuber.generator.GeneratorFactory.getGeneratorInstance;
+public class OnlyString {
 
-public class ExampleFile {
-
-    // what access modifier?
+    // what access modifier? should stay this same
     String someString;
 
-    ExampleFile(String someString) {
+    // all args constructor
+    OnlyString(String someString) {
         this.someString = someString;
     }
 
-    public static ExampleFileSeeder seeder() {
-        return new ExampleFileSeeder();
+    public static OnlyStringSeeder seeder() {
+        return new OnlyStringSeeder();
     }
 
-    public static ExampleFile seed() {
-        return new ExampleFileSeeder().seed();
+    public static OnlyString seed() {
+        return new OnlyStringSeeder().seed();
     }
 
-    public static class ExampleFileSeeder<T extends Generator> {
+    public static class OnlyStringSeeder<T extends Generator> {
         /* all fields must be private , it is GeneratorPair with defined on field generator*/
 //        private GeneratorPair someString = new GeneratorPair(RandomGenerator.class);
 //        def constructor = clazz.getConstructor().newInstance()
         private GeneratorPair someString = new GeneratorPair(RandomGenerator.class);
 
         /* package private constructor */
-        ExampleFileSeeder() {
+        OnlyStringSeeder() {
 //            this.seededWithRulesFile = new SeededWithRulesFile();
         }
 
@@ -39,19 +37,19 @@ public class ExampleFile {
             - generator argument
             - same argument as already exists
          */
-        public ExampleFileSeeder someString(Class<T> someStringGenerator) {
+        public OnlyStringSeeder someString(Class<T> someStringGenerator) {
             this.someString.setGenerator(someStringGenerator);
             return this;
         }
 
-        public ExampleFileSeeder someString(String someString) {
+        public OnlyStringSeeder someString(String someString) {
             this.someString.setValue(someString);
             return this;
         }
 
         /* seed method */
-        public ExampleFile seed() {
-            return new ExampleFile(someString.get());
+        public OnlyString seed() {
+            return new OnlyString(someString.get());
         }
 
         /*
